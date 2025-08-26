@@ -148,12 +148,12 @@ TOPIC_MAP = {
     ]
 }
 
-subject = st.selectbox("학년 선택", ["학년을 선택하세요"] + list(TOPIC_MAP.keys()))
-if subject == "학년을 선택하세요":
+grade = st.selectbox("학년 선택", ["학년을 선택하세요"] + list(TOPIC_MAP.keys()))
+if grade == "학년을 선택하세요":
     st.stop()
 
-topic = st.selectbox("과목 선택", ["과목을 선택하세요"] + TOPIC_MAP.get(subject, []))
-if topic == "과목을 선택하세요":
+subject = st.selectbox("과목 선택", ["과목을 선택하세요"] + TOPIC_MAP.get(grade, []))
+if subject == "과목을 선택하세요":
     st.stop()
 
 # ===== 학생 목록 조회 =====
@@ -162,7 +162,7 @@ if not students:
     st.warning("해당 과목에 대해 대화한 학생이 없습니다.")
     st.stop()
 
-student_options = [f"{n} ({nm}) / 코드: {c}" for n, nm, c in students]
+student_options = [f"{n} / 코드: {c}" for n, c in students]
 selected = st.selectbox("학생 선택", student_options)
 idx = student_options.index(selected)
 name, code = students[idx]
