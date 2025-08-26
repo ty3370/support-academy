@@ -83,7 +83,7 @@ def fetch_students_v4(grade, subject):
         SELECT DISTINCT name, code
         FROM qna_unique_v4
         WHERE grade = %s AND subject = %s
-        ORDER BY number
+        ORDER BY name
         """
         cursor.execute(sql, (grade, subject))
         students = cursor.fetchall()
