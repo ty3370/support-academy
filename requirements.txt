@@ -1,0 +1,8 @@
+streamlit
+pymysql
+openai
+pymupdf
+numpy
+tzdata
+matplotlib
+google-genai
