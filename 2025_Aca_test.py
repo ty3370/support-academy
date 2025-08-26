@@ -267,11 +267,13 @@ def connect_to_db():
         autocommit=True
     )
 
+# === load_chat / save_chat 만 교체 ===
+
 def load_chat(subject, topic):
     name = st.session_state.get("user_name", "").strip()
     code = st.session_state.get("user_code", "").strip()
-    grade = st.session_state.get("user_grade", "").strip()
-    subject_core = st.session_state.get("user_subject", "").strip()
+    grade = subject.strip()
+    subject_core = topic.strip()
     if not all([name, code]):
         return []
     try:
@@ -291,8 +293,8 @@ def load_chat(subject, topic):
 def save_chat(subject, topic, chat):
     name = st.session_state.get("user_name", "").strip()
     code = st.session_state.get("user_code", "").strip()
-    grade = st.session_state.get("user_grade", "").strip()
-    subject_core = st.session_state.get("user_subject", "").strip()
+    grade = subject.strip()          # <- 인자 사용
+    subject_core = topic.strip()     # <- 인자 사용
     if not all([name, code]):
         return
     try:
@@ -493,8 +495,8 @@ def chatbot_tab(subject, topic):
 
 # ===== Pages =====
 def page_1():
-    st.title("제목")
-    st.write("내용")
+    st.title("이곳에 제목을 입력할 수 있습니다(예: 학원명..)")
+    st.write("이곳에 내용을 입력할 수 있습니다(예: 간단한 홍보 문구, 연락처..)")
     st.session_state['user_name'] = st.text_input("이름", value=st.session_state.get('user_name',''))
     st.session_state['user_code'] = st.text_input("식별코드", value=st.session_state.get('user_code',''),
         help="타인의 이름으로 접속하는 것을 방지하기 위해 자신만 기억할 수 있는 코드를 입력하세요.")
